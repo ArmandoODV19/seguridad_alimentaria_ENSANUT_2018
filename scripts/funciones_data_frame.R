@@ -31,7 +31,7 @@ security_state_df <- function(x = seguridad_alimentaria, state){
     mutate(porcentaje = freq/sta_total)
 }
 
-security_state_df(state = "Morelos")
+security_state_df(state = "Puebla")
 
 
 security_domain_df <- function(x = seguridad_alimentaria){
