@@ -138,7 +138,7 @@ security_domain_state_plot <- function(x = seguridad_alimentaria, state){
     facet_wrap(.~dominio)
 }
 
-security_domain_state_plot(state = "Aguascalientes")
+security_domain_state_plot(state = "Morelos")
 
 
 
