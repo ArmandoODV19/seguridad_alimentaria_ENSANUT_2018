@@ -301,3 +301,28 @@ familias_limpia %>%
   theme(legend.position="none")
 
 
+# juntando los datasets de adultos y familia
+
+data1 <- adultos_limpia %>%
+  select(edad, sexo, entidad, dominio, region, suma, alimentaria)
+
+data2 <- familias_limpia %>%
+  select(edad, sexo, entidad, dominio, region, suma, alimentaria)
+
+
+seguridad_alimentaria <- rbind(data1, data2)
+
+#### graficando seguridad alimentaria
+
+seguridad_alimentaria %>%
+  select(alimentaria) %>%
+  group_by(alimentaria) %>%
+  count() %>%
+  mutate(porcentaje = freq/44151) %>%
+  ggplot(aes(x = alimentaria, y = porcentaje, fill = alimentaria))+
+  geom_col()+
+  ylab("")+
+  xlab("")+
+  ylim(0,1)+
+  theme_grey()+
+  theme(legend.position="none")
