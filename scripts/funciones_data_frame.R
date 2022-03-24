@@ -1,5 +1,18 @@
 ### funciones para obtener data frames
 
+security_df <- function(x = seguridad_alimentaria){
+  x %>%
+    select(alimentaria) %>%
+    group_by(alimentaria) %>%
+    count() %>%
+    mutate(porcentaje = freq/44151)
+}
+
+security_df()
+
+
+
+
 security_state_df <- function(x = seguridad_alimentaria, state){
   sta <- x %>%
     select(alimentaria, entidad) %>%
