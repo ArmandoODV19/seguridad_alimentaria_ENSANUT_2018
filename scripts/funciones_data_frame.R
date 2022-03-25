@@ -97,8 +97,6 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
 security_domain_state_df(state = "Aguascalientes")
 
 
-
-
 security_zone_df <- function(x = seguridad_alimentaria, zone){
   reg <- x %>%
     select(alimentaria, region) %>%
