@@ -52,7 +52,7 @@ security_state_plot <- function(x = seguridad_alimentaria, state){
     theme(legend.position="none")
 }
 
-security_state_plot(state = "Tlaxcala")
+security_state_plot(state = "Morelos")
 
 ### funcion para graficar seguridad alimentaria por dominio
 
