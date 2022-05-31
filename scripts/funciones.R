@@ -49,7 +49,7 @@ security_state_plot <- function(x = seguridad_alimentaria, state){
     ylab("")+
     xlab("")+
     ylim(0,1)+
-    theme_grey()+
+    theme_classic()+
     theme(legend.position="none")
 }
 
