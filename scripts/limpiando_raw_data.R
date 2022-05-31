@@ -205,7 +205,7 @@ seguridad_raw_data$p16 <- revalue(seguridad_raw_data$p16,
 
 write_rds(seguridad_raw_data, "raw_data/seguridad_alimentaria_datos_crudos.rds")
 
-# dividiendo data set de adultos y dataser de adultos/jovenes
+# dividiendo data set de adultos y dataset de adultos/jovenes
 
 seguridad_raw_data$p9 <- as.factor(seguridad_raw_data$p9)
 seguridad_raw_data$p9 <- as.character(seguridad_raw_data$p9)
