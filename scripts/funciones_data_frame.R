@@ -19,7 +19,9 @@ security_state_df <- function(x = seguridad_alimentaria, state){
     filter(entidad == state) %>%
     group_by(alimentaria, entidad) %>%
     count() %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   sta_total <- sta$total
 
@@ -28,7 +30,7 @@ security_state_df <- function(x = seguridad_alimentaria, state){
     select(alimentaria) %>%
     group_by(alimentaria) %>%
     count() %>%
-    mutate(porcentaje = freq/sta_total)
+    mutate(porcentaje = n/sta_total)
 }
 
 security_state_df(state = "Tlaxcala")
@@ -40,7 +42,7 @@ security_domain_df <- function(x = seguridad_alimentaria){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "rural") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   rur_total <- rur$total
 
@@ -49,7 +51,7 @@ security_domain_df <- function(x = seguridad_alimentaria){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "urbano") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   urb_total <- urb$total
 
@@ -57,8 +59,8 @@ security_domain_df <- function(x = seguridad_alimentaria){
     select(alimentaria, dominio) %>%
     group_by(alimentaria, dominio) %>%
     count() %>%
-    mutate(porcentaje = case_when(dominio == "urbano" ~ freq/urb_total,
-                                  dominio == "rural" ~ freq/rur_total))
+    mutate(porcentaje = case_when(dominio == "urbano" ~ n/urb_total,
+                                  dominio == "rural" ~ n/rur_total))
 }
 
 security_domain_df()
@@ -71,7 +73,7 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "rural") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   rur_total <- rur$total
 
@@ -81,7 +83,7 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "urbano") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   urb_total <- urb$total
 
@@ -90,8 +92,8 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
     filter(entidad == state) %>%
     group_by(alimentaria, dominio) %>%
     count() %>%
-    mutate(porcentaje = case_when(dominio == "urbano" ~ freq/urb_total,
-                                  dominio == "rural" ~ freq/rur_total))
+    mutate(porcentaje = case_when(dominio == "urbano" ~ n/urb_total,
+                                  dominio == "rural" ~ n/rur_total))
 }
 
 security_domain_state_df(state = "Morelos")
@@ -103,7 +105,7 @@ security_zone_df <- function(x = seguridad_alimentaria, zone){
     filter(region == zone) %>%
     group_by(alimentaria, region) %>%
     count() %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   reg_total <- reg$total
 
@@ -112,7 +114,7 @@ security_zone_df <- function(x = seguridad_alimentaria, zone){
     select(alimentaria) %>%
     group_by(alimentaria) %>%
     count() %>%
-    mutate(porcentaje = freq/reg_total)
+    mutate(porcentaje = n/reg_total)
 }
 
 security_zone_df(zone = "centro")
@@ -125,7 +127,7 @@ security_domain_zone_df <- function(x = seguridad_alimentaria, zone){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "rural") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   rur_total <- rur$total
 
@@ -135,7 +137,7 @@ security_domain_zone_df <- function(x = seguridad_alimentaria, zone){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "urbano") %>%
-    summarise(total = sum(freq))
+    summarise(total = sum(n))
 
   urb_total <- urb$total
 
@@ -144,8 +146,8 @@ security_domain_zone_df <- function(x = seguridad_alimentaria, zone){
     filter(region == zone) %>%
     group_by(alimentaria, dominio) %>%
     count() %>%
-    mutate(porcentaje = case_when(dominio == "urbano" ~ freq/urb_total,
-                                  dominio == "rural" ~ freq/rur_total))
+    mutate(porcentaje = case_when(dominio == "urbano" ~ n/urb_total,
+                                  dominio == "rural" ~ n/rur_total))
 }
 
 security_domain_zone_df(zone = "sur")
