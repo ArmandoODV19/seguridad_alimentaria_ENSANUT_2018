@@ -161,7 +161,9 @@ security_zone_plot <- function(x = seguridad_alimentaria, zone){
     filter(region == zone) %>%
     group_by(alimentaria, region) %>%
     count() %>%
-    summarise(total = sum(n))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   reg_total <- reg$total
 
