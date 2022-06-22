@@ -77,7 +77,9 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "rural") %>%
-    summarise(total = sum(n))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   rur_total <- rur$total
 
@@ -87,7 +89,9 @@ security_domain_state_df <- function(x = seguridad_alimentaria, state){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "urbano") %>%
-    summarise(total = sum(n))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   urb_total <- urb$total
 
