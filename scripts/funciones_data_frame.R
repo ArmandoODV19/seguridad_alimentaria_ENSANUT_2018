@@ -5,7 +5,7 @@ security_df <- function(x = seguridad_alimentaria){
     select(alimentaria) %>%
     group_by(alimentaria) %>%
     count() %>%
-    mutate(porcentaje = freq/44151)
+    mutate(porcentaje = n/44151)
 }
 
 security_df()
