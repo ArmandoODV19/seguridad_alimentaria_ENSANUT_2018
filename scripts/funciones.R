@@ -196,7 +196,9 @@ security_domain_zone_plot <- function(x = seguridad_alimentaria, zone){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "rural") %>%
-    summarise(total = sum(n))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   rur_total <- rur$total
 
@@ -206,7 +208,9 @@ security_domain_zone_plot <- function(x = seguridad_alimentaria, zone){
     group_by(alimentaria, dominio) %>%
     count() %>%
     filter(dominio == "urbano") %>%
-    summarise(total = sum(n))
+    summarise(total = sum(n)) %>%
+    ungroup(alimentaria) %>%
+    summarize(total = sum(total))
 
   urb_total <- urb$total
 
